@@ -17,13 +17,12 @@ imputer = imputer.fit(X[:, 1:3])
 X[:, 1:3] = imputer.transform(X[:, 1:3])
 
 # Encoding categorical data
-# Encoding the Independent Variable
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
-labelencoder_X = LabelEncoder()
-X[:, 0] = labelencoder_X.fit_transform(X[:, 0])
-onehotencoder = OneHotEncoder(categorical_features = [0])
+labelencoder_X_1 = LabelEncoder()
+X[:, 1] = labelencoder_X_1.fit_transform(X[:, 1])
+labelencoder_X_2 = LabelEncoder()
+X[:, 2] = labelencoder_X_2.fit_transform(X[:, 2])
+onehotencoder = OneHotEncoder(categorical_features = [1])
 X = onehotencoder.fit_transform(X).toarray()
-# Encoding the Dependent Variable
-labelencoder_y = LabelEncoder()
-y = labelencoder_y.fit_transform(y)
+X = X[:, 1:]
 
